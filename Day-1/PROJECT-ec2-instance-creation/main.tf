@@ -1,8 +1,18 @@
-provider "aws" {
-    region = "us-east-1"  # Set your desired AWS region
+provider "azurerm" {
+  features {}
 }
 
-resource "aws_instance" "example" {
-    ami           = "ami-0c55b159cbfafe1f0"  # Specify an appropriate AMI ID
-    instance_type = "t2.micro"
+resource "azurerm_resource_group" "resoursegroup" {
+  name     = "TerraformPractice"
+  location = "West Europe"
+}
+
+resource "azurerm_windows_virtual_machine" "virtualmachine" {
+  name                = "Firstterramachine"
+  resource_group_name = azurerm_resource_group.resoursegroup.name
+  location            = azurerm_resource_group.resoursegroup.location
+  size                = "Standard_F2"
+  admin_username      = "adminuser"
+  admin_password      = "P@$$w0rd1234!"
+
 }
