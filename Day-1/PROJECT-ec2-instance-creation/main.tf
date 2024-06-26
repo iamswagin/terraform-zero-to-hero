@@ -15,4 +15,9 @@ resource "azurerm_windows_virtual_machine" "virtualmachine" {
   admin_username      = "adminuser"
   admin_password      = "P@$$w0rd1234!"
 
+os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
 }
